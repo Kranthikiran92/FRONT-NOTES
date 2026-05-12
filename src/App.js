@@ -5,12 +5,11 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [text, setText] = useState("");
 
-  const API = "https://keep-notes-xadd.onrender.com";
 
   // Fetch notes on load
   const getNotes = async () => {
     try {
-      const res = await axios.get(`${API}/notes`);
+      const res = await axios.get("https://keep-notes-xadd.onrender.com/notes");
       setNotes(res.data);
     } catch (error) {
       console.log("Error fetching notes:", error);
@@ -22,7 +21,7 @@ function App() {
     if (!text.trim()) return;
 
     try {
-      await axios.post(`${API}/notes`, { text });
+      await axios.post("https://keep-notes-xadd.onrender.com/notes", { text });
       setText("");
       getNotes(); // Refresh list after adding
     } catch (error) {
